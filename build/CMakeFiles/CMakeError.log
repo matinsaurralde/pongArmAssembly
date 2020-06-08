@@ -1,0 +1,60 @@
+Performing C++ SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/ucc1/Proyecto/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_b0140/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b0140.dir/build.make CMakeFiles/cmTC_b0140.dir/build
+gmake[1]: Entering directory '/home/ucc1/Proyecto/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b0140.dir/src.cxx.o
+/usr/bin/c++    -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_b0140.dir/src.cxx.o -c /home/ucc1/Proyecto/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_b0140
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b0140.dir/link.txt --verbose=1
+/usr/bin/c++   -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_b0140.dir/src.cxx.o  -o cmTC_b0140 
+/usr/lib/gcc/aarch64-unknown-linux-gnu/10.1.0/../../../../aarch64-unknown-linux-gnu/bin/ld: CMakeFiles/cmTC_b0140.dir/src.cxx.o: in function `main':
+src.cxx:(.text+0x48): undefined reference to `pthread_create'
+/usr/lib/gcc/aarch64-unknown-linux-gnu/10.1.0/../../../../aarch64-unknown-linux-gnu/bin/ld: src.cxx:(.text+0x50): undefined reference to `pthread_detach'
+/usr/lib/gcc/aarch64-unknown-linux-gnu/10.1.0/../../../../aarch64-unknown-linux-gnu/bin/ld: src.cxx:(.text+0x58): undefined reference to `pthread_cancel'
+/usr/lib/gcc/aarch64-unknown-linux-gnu/10.1.0/../../../../aarch64-unknown-linux-gnu/bin/ld: src.cxx:(.text+0x64): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_b0140.dir/build.make:107: cmTC_b0140] Error 1
+gmake[1]: Leaving directory '/home/ucc1/Proyecto/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:141: cmTC_b0140/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/ucc1/Proyecto/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_d0379/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d0379.dir/build.make CMakeFiles/cmTC_d0379.dir/build
+gmake[1]: Entering directory '/home/ucc1/Proyecto/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d0379.dir/CheckFunctionExists.cxx.o
+/usr/bin/c++    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_d0379.dir/CheckFunctionExists.cxx.o -c /home/ucc1/Proyecto/build/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_d0379
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d0379.dir/link.txt --verbose=1
+/usr/bin/c++   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_d0379.dir/CheckFunctionExists.cxx.o  -o cmTC_d0379  -lpthreads 
+/usr/lib/gcc/aarch64-unknown-linux-gnu/10.1.0/../../../../aarch64-unknown-linux-gnu/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_d0379.dir/build.make:107: cmTC_d0379] Error 1
+gmake[1]: Leaving directory '/home/ucc1/Proyecto/build/CMakeFiles/CMakeTmp'
+gmake: *** [Makefile:141: cmTC_d0379/fast] Error 2
+
+
+

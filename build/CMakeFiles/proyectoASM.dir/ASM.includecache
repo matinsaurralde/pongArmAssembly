@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ucc1/Proyecto/imagenes.h
+cstdint
+-
+
+/home/ucc1/Proyecto/proyectoASM.s
+imagenes.h
+/home/ucc1/Proyecto/imagenes.h
+stdio.h
+-
+
